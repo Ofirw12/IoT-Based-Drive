@@ -1,0 +1,18 @@
+# ignore all, whitelist approach
+*
+# don't ignore folders and subfolders
+!*/
+/cmake-build-debug
+/cmake-build-release
+
+# don't ignore .gitignore
+!.gitignore
+
+# don't ignore these file types
+!*.c
+!*.sh
+!*.h
+!*.md
+!*.cpp
+!*.hpp
+!*.txt
