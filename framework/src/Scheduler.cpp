@@ -1,7 +1,8 @@
 
+#include <mutex> // std::unique_lock
+
 #include "Scheduler.hpp"
 
-#include <mutex> // std::unique_lock
 
 ilrd::Scheduler::Scheduler() : m_timer(ThreadFunc, this) {}
 

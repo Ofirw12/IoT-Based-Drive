@@ -1,6 +1,3 @@
-//
-// Created by ofir on 4/8/25.
-//
 
 #include "AMessage.hpp"
 

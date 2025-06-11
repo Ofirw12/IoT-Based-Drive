@@ -1,17 +1,11 @@
-/*******************************************************************************
-* FileName: ICommand                                                           *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: Gil Fridman					                                   *
- * Review Status: APPROVED (30/03/2025)                                        *
- ******************************************************************************/
 
 #ifndef ILRD_RD1645_ICOMMAND_HPP
 #define ILRD_RD1645_ICOMMAND_HPP
 
-#include <memory>
-#include <optional> // std::optional
-#include <functional> // std::function
 #include <chrono>
+#include <functional>
+#include <memory>
+#include <optional>
 
 #include "ITaskArgs.hpp"
 

@@ -1,6 +1,3 @@
-//
-// Created by ofir on 4/6/25.
-//
 
 #include "ATaskArgs.hpp"
 

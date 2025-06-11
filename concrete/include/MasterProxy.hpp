@@ -1,12 +1,3 @@
-/*******************************************************************************
-* FileName: MasterProxy                                                          *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: TBD                                                     *
- * Review Status: pre-APPROVED (20/04/2025)                                           *
- ******************************************************************************/
-//
-// Created by ofir on 4/20/25.
-//
 
 #ifndef ILRD_RD1645_MASTERPROXY_HPP
 #define ILRD_RD1645_MASTERPROXY_HPP
@@ -25,10 +16,10 @@ class MasterProxy final : public IInputProxy
 {
 public:
 	~MasterProxy() override = default;
-	MasterProxy(const MasterProxy&) = delete;
-	MasterProxy& operator=(const MasterProxy&) = delete;
-	MasterProxy(MasterProxy&&) = delete;
-	MasterProxy& operator=(MasterProxy&&) = delete;
+	MasterProxy(const MasterProxy& other) = delete;
+	MasterProxy& operator=(const MasterProxy& other) = delete;
+	MasterProxy(MasterProxy&& other) = delete;
+	MasterProxy& operator=(MasterProxy&& other) = delete;
 
 	std::shared_ptr<ITaskArgs> GetTaskArgs(int fd, FDMODE mode) override;
 	void Init(const std::string& port);

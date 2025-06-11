@@ -1,8 +1,8 @@
 
 #include <cstdlib>
-#include <thread>
 #include <iostream>
-#include "test_macros.h"
+#include <thread>
+
 #include "WaitableQueue.hpp"
 
 template<typename T>
@@ -12,7 +12,7 @@ public:
     void push(T value) {m_queue.push_back(value);}
     void pop() {m_queue.pop_back();}
     T front() {return m_queue.front();}
-    bool empty() const { return m_queue.empty();}
+    [[nodiscard]] bool empty() const { return m_queue.empty();}
 private:
     std::vector<T> m_queue;
 };
@@ -33,10 +33,10 @@ void Writer(ilrd::WaitableQueue<int, Q>& q)
 template <typename Q>
 void Reader(ilrd::WaitableQueue<int, Q>& q)
 {
-    int val = 0;
     for( int i = 0; i < 10; ++i)
     {
-        if (rand() % 2)
+        int val = 0;
+        if (random() % 2)
         {
             q.Pop(val);
         }
@@ -55,7 +55,7 @@ void Reader(ilrd::WaitableQueue<int, Q>& q)
 template <typename Q>
 void TestWaitableQueue()
 {
-    const size_t thread_count = 10;
+    constexpr size_t thread_count = 10;
     std::thread readers[thread_count] = {};
     std::thread writers[thread_count] = {};
     ilrd::WaitableQueue<int, Q> queue;
@@ -81,6 +81,5 @@ int main()
     TestWaitableQueue<MyQueue<int>>();
     TestWaitableQueue<std::priority_queue<int>>();
 
-    PASS;
     return 0;
 }

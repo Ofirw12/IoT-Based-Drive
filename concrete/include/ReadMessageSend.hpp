@@ -1,15 +1,7 @@
-/*******************************************************************************
-* FileName: ReadMessageSend                                                          *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: TBD                                                     *
- * Review Status: pre-APPROVED (09/04/2025)                                           *
- ******************************************************************************/
-//
-// Created by ofir on 4/9/25.
-//
 
 #ifndef ILRD_RD1645_READMESSAGESEND_HPP
 #define ILRD_RD1645_READMESSAGESEND_HPP
+
 #include "AMessage.hpp"
 
 namespace ilrd

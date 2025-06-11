@@ -9,10 +9,10 @@ namespace ilrd
 class Socket
 {
 public:
-    virtual ~Socket();
+    virtual ~Socket() = default;
     virtual int Send(const std::vector<char>& str) = 0;
     virtual int Recv(std::vector<char>& str) = 0;
-    virtual int GetSocket() const = 0;
+    [[nodiscard]] virtual int GetSocket() const = 0;
 };// class Socket
 }// namespace ilrd
 

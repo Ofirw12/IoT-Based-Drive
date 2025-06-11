@@ -1,9 +1,4 @@
-/*******************************************************************************
-* FileName: Factory                                                            *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: Amir Fragman                                                      *
- * Review Status: APPROVED (17.3.25)                                           *
- ******************************************************************************/
+
 #ifndef ILRD_R1645_FACTORY_HPP
 #define ILRD_R1645_FACTORY_HPP
 

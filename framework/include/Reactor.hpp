@@ -1,9 +1,3 @@
-/*******************************************************************************
-* FileName: Reactor                                                            *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: Mor Weisberg                                                      *
- * Review Status: APPROVED (25/03/25)                                          *
- ******************************************************************************/
 
 #ifndef ILRD_RD1645_REACTOR_HPP
 #define ILRD_RD1645_REACTOR_HPP

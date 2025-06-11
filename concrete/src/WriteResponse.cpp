@@ -1,10 +1,7 @@
 
-
 #include <iostream>
 
 #include "WriteResponse.hpp"
-
-#include "Handleton.hpp"
 #include "Logger.hpp"
 
 void ilrd::WriteResponse::onSuccess(const std::shared_ptr<TaskResult>& res)

@@ -1,6 +1,7 @@
 
-#include <utility>
 #include <ranges>
+#include <utility>
+
 #include "Reactor.hpp"
 
 ilrd::Reactor::Reactor(std::unique_ptr<IListener> listener)

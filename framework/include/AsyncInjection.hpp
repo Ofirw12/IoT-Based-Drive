@@ -1,17 +1,11 @@
-/*******************************************************************************
-* FileName: AsyncInjection                                                     *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: Itai Hirschhorn                                                   *
- * Review Status: APPROVED (27/03/2025)                                        *
- ******************************************************************************/
 
 #ifndef ILRD_RD1645_ASYNCINJECTION_HPP
 #define ILRD_RD1645_ASYNCINJECTION_HPP
 
+#include <functional> // std::function
+
 #include "ISchedulerTask.hpp"
 #include "Scheduler.hpp"
-
-#include <functional> // std::function
 
 namespace ilrd
 {

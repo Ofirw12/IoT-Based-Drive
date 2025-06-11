@@ -8,11 +8,11 @@ namespace ilrd
 class TCPSocket : public Socket
 {
 public:
-    TCPSocket(const std::string& port,const std::string& ip = "",
+    explicit TCPSocket(const std::string& port,const std::string& ip = "",
                         bool server = false); // throw runtime_error
     explicit TCPSocket(int sockfd); // throw runtime_error
-    virtual ~TCPSocket();
-    int GetSocket() const;
+    ~TCPSocket() override;
+    int GetSocket() const override;
 
 protected:
     void SetSocket(int sockfd);

@@ -1,9 +1,4 @@
-/*******************************************************************************
-* FileName: Handleton                                                          *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: Gil Fridman                                                       *
- * Review Status: APPROVED (17.3.25)                                           *
- ******************************************************************************/
+
 #include "Handleton.hpp"
 
 std::unordered_map<const std::type_info*, std::shared_ptr<void>,

@@ -1,12 +1,3 @@
-/*******************************************************************************
-* FileName: MinionCommandWrite                                                          *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: TBD                                                     *
- * Review Status: pre-APPROVED (20/04/2025)                                           *
- ******************************************************************************/
-//
-// Created by ofir on 4/20/25.
-//
 
 #ifndef ILRD_RD1645_MINIONCOMMANDWRITE_HPP
 #define ILRD_RD1645_MINIONCOMMANDWRITE_HPP

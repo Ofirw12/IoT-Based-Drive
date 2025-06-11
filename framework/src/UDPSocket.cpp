@@ -1,9 +1,3 @@
-/*******************************************************************************
-* FileName: UDPSocket                                                          *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: Amir Fragman                                                      *
- * Review Status: APPROVED (26.2.25)                                           *
- ******************************************************************************/
 
 #include <cstdio>
 #include <cstdlib>
@@ -11,7 +5,6 @@
 #include <iostream>
 #include <netdb.h>
 #include <unistd.h>
-#include <arpa/inet.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <sys/types.h>
@@ -23,8 +16,8 @@ ilrd::UDPSocket::UDPSocket(const std::string& port, const std::string& other_ip)
     : m_socket(-1), m_other()
 {
     addrinfo hints = {};
-    addrinfo* servinfo = NULL;
-    addrinfo* p = NULL;
+    addrinfo* servinfo = nullptr;
+    const addrinfo* p = nullptr;
     int rv = 0;
 
     memset(&hints, 0, sizeof hints);
@@ -39,7 +32,7 @@ ilrd::UDPSocket::UDPSocket(const std::string& port, const std::string& other_ip)
         throw std::runtime_error("getaddrinfo error");
     }
 
-    for (p = servinfo; p != NULL; p = p->ai_next)
+    for (p = servinfo; p != nullptr; p = p->ai_next)
     {
         if ((m_socket = socket(p->ai_family, p->ai_socktype,
                 p->ai_protocol)) == -1)
@@ -58,15 +51,13 @@ ilrd::UDPSocket::UDPSocket(const std::string& port, const std::string& other_ip)
         break;
     }
 
-    if (p == NULL) {
-        throw std::runtime_error("failed to bind");
-        close(m_socket);
-    }
-    else
+    if (p == nullptr)
     {
-        m_other = *reinterpret_cast<sockaddr_in*>(p->ai_addr);
+        close(m_socket);
+        throw std::runtime_error("failed to bind");
     }
 
+    m_other = *reinterpret_cast<sockaddr_in*>(p->ai_addr);
     freeaddrinfo(servinfo);
 }
 
@@ -78,7 +69,7 @@ ilrd::UDPSocket::~UDPSocket()
 int ilrd::UDPSocket::Send(const std::vector<char>& str)
 {
 
-    ssize_t bytes = sendto(m_socket, str.data(), str.size() + 1, 0,
+    const ssize_t bytes = sendto(m_socket, str.data(), str.size() + 1, 0,
           reinterpret_cast<sockaddr*>(&m_other), sizeof(m_other));
     if (bytes == -1)
     {
@@ -92,12 +83,11 @@ int ilrd::UDPSocket::Recv(std::vector<char>& str)
 {
     socklen_t len = sizeof(sockaddr_in);
     char buffer[BUFSIZ] = {0};
-    ssize_t bytes = recvfrom(m_socket, buffer, BUFSIZ, 0,
+    const ssize_t bytes = recvfrom(m_socket, buffer, BUFSIZ, 0,
                     reinterpret_cast<sockaddr*>(&m_other), &len);
     if (bytes == -1)
     {
         throw std::runtime_error("recvfrom error");
-        return -1;
     }
 
     str.resize(bytes);

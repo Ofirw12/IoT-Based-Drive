@@ -1,19 +1,13 @@
-/*******************************************************************************
-* FileName: Scheduler                                                          *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: TBD                                                     *
- * Review Status: pre-APPROVED (25/03/25)                                           *
- ******************************************************************************/
 
 #ifndef ILRD_RD1645_SCHEDULER_HPP
 #define ILRD_RD1645_SCHEDULER_HPP
 
+#include <condition_variable> // std::condition_variable
 #include <memory> // std::shared_ptr
 #include <queue> // std::priority_queue
-#include <condition_variable> // std::condition_variable
 
-#include "Timer.hpp"
 #include "ISchedulerTask.hpp"
+#include "Timer.hpp"
 
 namespace ilrd
 {
@@ -53,7 +47,7 @@ private:
         SchedulerTask& operator=(const SchedulerTask& other) = delete;
 
         /// implements greater operator as if it was less operator,
-        /// for priority_queue comparator
+        /// for priority_queue default comparator
         bool operator<(const SchedulerTask& other) const;
         void Run() const;
         [[nodiscard]] std::chrono::time_point<std::chrono::system_clock>

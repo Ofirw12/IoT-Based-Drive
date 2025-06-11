@@ -1,19 +1,10 @@
-/*******************************************************************************
-* FileName: MinionManager                                                          *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: TBD                                                     *
- * Review Status: pre-APPROVED (06/04/2025)                                           *
- ******************************************************************************/
-//
-// Created by ofir on 4/6/25.
-//
 
 #ifndef ILRD_RD1645_MINIONMANAGER_HPP
 #define ILRD_RD1645_MINIONMANAGER_HPP
 
 #include <thread>
 
-#include "ATaskArgs.hpp"
+// #include "ATaskArgs.hpp"
 #include "IMinionProxy.hpp"
 #include "Reactor.hpp"
 #include "Ticket.hpp"

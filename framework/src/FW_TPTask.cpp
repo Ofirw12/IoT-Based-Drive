@@ -1,8 +1,5 @@
 
 #include "FW_TPTask.hpp"
-
-#include <iostream>
-
 #include "AsyncInjection.hpp"
 #include "Factory.hpp"
 #include "Handleton.hpp"

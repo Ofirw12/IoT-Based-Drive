@@ -1,10 +1,8 @@
-#include <iostream>
-
-#include "NBDProxy.hpp"
 
 #include <cstring>
 #include <netinet/in.h>
 
+#include "NBDProxy.hpp"
 #include "Factory.hpp"
 #include "Handleton.hpp"
 #include "NBDReadArgs.hpp"

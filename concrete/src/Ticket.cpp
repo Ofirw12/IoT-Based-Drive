@@ -1,8 +1,5 @@
 
 #include "Ticket.hpp"
-
-#include <cstring>
-
 #include "Handleton.hpp"
 #include "Logger.hpp"
 

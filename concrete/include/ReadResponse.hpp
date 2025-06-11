@@ -10,6 +10,7 @@
 
 #ifndef ILRD_RD1645_READRESPONSE_HPP
 #define ILRD_RD1645_READRESPONSE_HPP
+
 #include "IResponse.hpp"
 
 namespace ilrd

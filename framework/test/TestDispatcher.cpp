@@ -1,24 +1,25 @@
 
 #include <iostream>
+
 #include "Dispatcher.hpp"
 
-class Moshe
+class Obj
 {
 public:
-    Moshe() = default;
-    void Do(int i) {std::cout << "Moshe::Do" << std::endl; }
-    void DoHast() {std::cout << "Moshe::DoHast" << std::endl; }
-    void DoHastMich(int i) {std::cout << "Moshe::DoHastMich" << std::endl; }
+    Obj() = default;
+    void Print_i(int i) {std::cout << "Obj::Print_i" << std::endl; }
+    void Print() {std::cout << "Obj::Print" << std::endl; }
+    void Printer(int i) {std::cout << "Obj::Printer" << std::endl; }
 };
 
 void TestDispatcher()
 {
-    Moshe moshe;
+    Obj moshe;
     ilrd::Callback callb(moshe,
-        &Moshe::Do, &Moshe::DoHast);
-    Moshe mosh;
-    ilrd::Callback callb2(mosh, &Moshe::DoHastMich,
-                                        &Moshe::DoHast);
+        &Obj::Print_i, &Obj::Print);
+    Obj mosh;
+    ilrd::Callback callb2(mosh, &Obj::Printer,
+                                        &Obj::Print);
     ilrd::Dispatcher<int> dispa;
     dispa.Register(&callb);
     dispa.Register(&callb);

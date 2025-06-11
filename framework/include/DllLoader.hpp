@@ -1,15 +1,9 @@
-/*******************************************************************************
-* FileName: DllLoader                                                          *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: Liad Tiblum                                                       *
- * Review Status: APPROVED (24/3/25)                                           *
- ******************************************************************************/
 
 #ifndef ILRD_RD1645_DLLLOADER_HPP
 #define ILRD_RD1645_DLLLOADER_HPP
 
-#include <unordered_map> // std::unordered_map
 #include <string> // std::string
+#include <unordered_map> // std::unordered_map
 
 namespace ilrd
 {

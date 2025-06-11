@@ -16,7 +16,7 @@ Framework::Framework(
 			m_deleteCB({m_dllLoader, &DllLoader::Unload})
 {
 	// factory init
-	for (const auto [key, creator] : factory_list)
+	for (const auto& [key, creator] : factory_list)
 	{
 		Handleton::GetInstance<Factory<int, ICommand>>()->Register(key ,creator);
 	}

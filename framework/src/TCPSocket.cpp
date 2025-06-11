@@ -18,23 +18,23 @@
 ilrd::TCPSocket::TCPSocket(const std::string& port,const std::string& ip, bool server) : m_socket(-1)
 {
     addrinfo hints = {};
-    addrinfo* servinfo = NULL;
-    addrinfo* p = NULL;
-    int yes = 1;
+    addrinfo* servinfo = nullptr;
+    const addrinfo* p = nullptr;
+    int sockoptres = 1;
     int rv = 0;
 
     hints.ai_family = AF_UNSPEC;
     hints.ai_socktype = SOCK_STREAM;
     hints.ai_flags = AI_PASSIVE;
 
-    if ((rv = getaddrinfo(ip.empty() ? NULL : ip.c_str(),
+    if ((rv = getaddrinfo(ip.empty() ? nullptr : ip.c_str(),
             port.c_str(), &hints, &servinfo)) != 0)
     {
         std::cerr << "getaddrinfo: " << gai_strerror(rv) << std::endl;
         throw std::runtime_error("getaddrinfo error");
     }
 
-    for(p = servinfo; p != NULL; p = p->ai_next)
+    for(p = servinfo; p != nullptr; p = p->ai_next)
     {
         if ((m_socket = socket(p->ai_family, p->ai_socktype,
                 p->ai_protocol)) == -1)
@@ -45,7 +45,7 @@ ilrd::TCPSocket::TCPSocket(const std::string& port,const std::string& ip, bool s
 
         if (server)
         {
-            if (setsockopt(m_socket, SOL_SOCKET, SO_REUSEADDR, &yes,
+            if (setsockopt(m_socket, SOL_SOCKET, SO_REUSEADDR, &sockoptres,
                  sizeof(int)) == -1)
             {
                  std::cerr << "server: setsockopt reuseaddr" << std::endl;
@@ -73,7 +73,7 @@ ilrd::TCPSocket::TCPSocket(const std::string& port,const std::string& ip, bool s
 
     freeaddrinfo(servinfo);
 
-    if (p == NULL)
+    if (p == nullptr)
     {
         std::cerr << (server ? "server: failed to bind": "client: failed to bind") << std::endl;
         throw std::runtime_error("failed to bind");

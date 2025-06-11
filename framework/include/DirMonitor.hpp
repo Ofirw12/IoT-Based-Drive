@@ -1,9 +1,3 @@
-/*******************************************************************************
-* FileName: DirMonitor                                                         *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: Liad Tiblum                                                       *
- * Review Status: APPROVED (24/3/25)                                           *
- ******************************************************************************/
 
 #ifndef ILRD_RD1645_DIRMONITOR_HPP
 #define ILRD_RD1645_DIRMONITOR_HPP

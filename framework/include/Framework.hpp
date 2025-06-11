@@ -1,9 +1,3 @@
-/*******************************************************************************
-* FileName: Framework                                                          *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: Gil Fridman					                                   *
- * Review Status: APPROVED (30/03/2025)                                        *
- ******************************************************************************/
 
 #ifndef ILRD_RD1645_FRAMEWORK_HPP
 #define ILRD_RD1645_FRAMEWORK_HPP

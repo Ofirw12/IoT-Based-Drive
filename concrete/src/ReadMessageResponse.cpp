@@ -1,7 +1,8 @@
 
+#include <cstring>
+
 #include "ReadMessageResponse.hpp"
 
-#include <cstring>
 
 char* ilrd::ReadMessageResponse::AllocAndCpy(std::shared_ptr<const char[]> data, size_t len)
 {

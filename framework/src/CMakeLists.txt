@@ -34,9 +34,9 @@ add_library(async_inject_shared SHARED AsyncInjection.cpp)
 target_link_libraries(async_inject_static scheduler_cpp_static)
 target_link_libraries(async_inject_shared scheduler_cpp_shared)
 
-add_library(udpsocket STATIC Socket.cpp UDPSocket.cpp)
-add_library(tcpclient STATIC Socket.cpp TCPSocket.cpp TCPClient.cpp)
-add_library(tcpserver STATIC Socket.cpp TCPSocket.cpp TCPServer.cpp TCPConnection.cpp)
+add_library(udpsocket STATIC UDPSocket.cpp)
+add_library(tcpclient STATIC TCPSocket.cpp TCPClient.cpp)
+add_library(tcpserver STATIC TCPSocket.cpp TCPServer.cpp TCPConnection.cpp)
 
 project(framework)
 add_library(framework_static STATIC Framework.cpp FW_TPTask.cpp)

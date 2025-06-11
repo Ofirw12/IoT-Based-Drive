@@ -53,12 +53,10 @@ void ThreadFunc2()
         std::cout << *ilrd::Singleton<std::string>::GetInstance() << std::endl;
         ++i;
     }
-    // ilrd::Singleton<std::string>::Destruct();
 }
 
 void TestSingleton()
 {
-    // ilrd::Singleton<std::string> str;
     std::string* const instance = ilrd::Singleton<std::string>::GetInstance();
     ilrd::Singleton<std::string>::GetInstance()->append("TestSingleton");
     std::cout << ilrd::Singleton<std::string>::GetInstance()->c_str() << std::endl;
@@ -68,7 +66,6 @@ void TestSingleton()
     std::jthread one(ThreadFunc1);
     std::jthread two(ThreadFunc2);
     sleep(5);
-    // ilrd::Singleton<std::string>::Destruct();
     try
     {
         ilrd::Singleton<std::string>::GetInstance()->append("Destructed test");
@@ -79,12 +76,9 @@ void TestSingleton()
         std::cout << e.what() << std::endl;
     }
 
-    // Company com;
     Company* com = ilrd::Singleton<Company>::GetInstance();
-    // Company com2 = *com;
     com->WorkDay();
     com->Fire();
-
 }
 
 int main()

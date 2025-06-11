@@ -1,6 +1,3 @@
-//
-// Created by ofir on 4/9/25.
-//
 
 #include <iostream>
 

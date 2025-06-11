@@ -1,9 +1,3 @@
-/*******************************************************************************
-* FileName: Timer                                                          *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: TBD                                                     *
- * Review Status: pre-APPROVED (25/03/2025)                                           *
- ******************************************************************************/
 
 #ifndef ILRD_RD1645_TIMER_HPP
 #define ILRD_RD1645_TIMER_HPP

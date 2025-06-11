@@ -1,8 +1,6 @@
 
 #include "ResponseManager.hpp"
-
-#include <Factory.hpp>
-
+#include "Factory.hpp"
 #include "Handleton.hpp"
 #include "Logger.hpp"
 #include "MinionManager.hpp"

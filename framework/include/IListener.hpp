@@ -1,12 +1,7 @@
-/*******************************************************************************
-* FileName: IListener                                                          *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: Mor Weisberg                                                      *
- * Review Status: APPROVED (23/03/25)                                          *
- ******************************************************************************/
 
 #ifndef ILRD_RD1645_ILISTENER_HPP
 #define ILRD_RD1645_ILISTENER_HPP
+
 #include <vector>
 
 namespace ilrd

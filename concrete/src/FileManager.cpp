@@ -1,7 +1,8 @@
 
+#include <mutex>
+
 #include "FileManager.hpp"
 
-#include <mutex>
 
 ilrd::FileManager::FileManager(const std::string& filePath)
 	: m_file(filePath)

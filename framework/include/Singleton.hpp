@@ -1,9 +1,4 @@
-/*******************************************************************************
-* FileName: Singleton                                                          *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: Amit Yehezkel                                                     *
- * Review Status: APPROVED (17.3.25)                                           *
- ******************************************************************************/
+
 #ifndef ILRD_R1645_SINGLETON_HPP
 #define ILRD_R1645_SINGLETON_HPP
 

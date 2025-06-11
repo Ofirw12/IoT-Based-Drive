@@ -2,9 +2,6 @@
 #include <cstring>
 
 #include "MasterProxy.hpp"
-
-#include <iostream>
-
 #include "MinionReadArgs.hpp"
 #include "MinionWriteArgs.hpp"
 #include "ReadMessageResponse.hpp"

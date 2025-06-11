@@ -1,5 +1,4 @@
 
-
 #include <cstring>
 #include <iostream>
 
@@ -11,7 +10,6 @@
 #include "ReadMessageSend.hpp"
 #include "WriteMessageResponse.hpp"
 #include "WriteMessageSend.hpp"
-
 
 ilrd::MinionProxy::MinionProxy(const std::string& send_port, const std::string& to_ip)
 	: m_socket(send_port, to_ip) {}

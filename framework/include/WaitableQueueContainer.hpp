@@ -1,6 +1,4 @@
-//
-// Created by ofir on 3/9/25.
-//
+
 #ifndef ILRD_R1645_WAITABLE_QUEUE_CONTAINER_HPP
 #define ILRD_R1645_WAITABLE_QUEUE_CONTAINER_HPP
 
@@ -14,7 +12,7 @@ class WaitableQueueContainer
 protected:
     void Push(const T& data);
     void Pop(T& out);
-    bool IsEmpty() const;
+    [[nodiscard]] bool IsEmpty() const;
 
 private:
     Q m_queue;
@@ -26,7 +24,7 @@ class WaitableQueueContainer<T, std::priority_queue<T>>
 protected:
     void Push(const T& data);
     void Pop(T& out);
-    bool IsEmpty() const;
+    [[nodiscard]] bool IsEmpty() const;
 
 private:
     std::priority_queue<T> m_queue;

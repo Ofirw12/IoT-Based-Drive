@@ -1,5 +1,7 @@
-#include "Timer.hpp"
+
 #include <stdexcept>
+
+#include "Timer.hpp"
 
 using namespace ilrd;
 

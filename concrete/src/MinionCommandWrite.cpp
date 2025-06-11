@@ -1,8 +1,8 @@
 
-#include "MinionCommandWrite.hpp"
 
 #include <iostream>
 
+#include "MinionCommandWrite.hpp"
 #include "FileManager.hpp"
 #include "Handleton.hpp"
 #include "MasterProxy.hpp"

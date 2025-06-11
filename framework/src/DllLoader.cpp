@@ -1,6 +1,7 @@
 
 #include <dlfcn.h> // dlopen, dlclose
 #include <stdexcept> // std::runtime_error
+
 #include "DllLoader.hpp"
 
 ilrd::DllLoader::~DllLoader()

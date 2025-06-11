@@ -1,15 +1,10 @@
-/*******************************************************************************
-* FileName: Waitable Queue                                                     *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: Amit Yehezkel                                                     *
- * Review Status: APPROVED (9.3.25)                                            *
- ******************************************************************************/
 
 #ifndef ILRD_RD1645_WAITABLEQUEUE_HPP
 #define ILRD_RD1645_WAITABLEQUEUE_HPP
 
 #include <condition_variable> //std::conditional_variable_any
 #include <mutex> //std::timed_mutex
+
 #include "WaitableQueueContainer.hpp"
 
 namespace ilrd

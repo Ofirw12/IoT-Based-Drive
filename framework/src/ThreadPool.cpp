@@ -1,15 +1,10 @@
-/*******************************************************************************
-* FileName: ThreadPool                                                         *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: Amit Yehezkel                                                     *
- * Review Status: APPROVED (12.3.25)                                           *
- ******************************************************************************/
 
 #include "ThreadPool.hpp"
 
 using namespace ilrd::threadpool;
 thread_local bool ilrd::ThreadPool::m_threadIsRunning = true;
-const std::shared_ptr<ITPTask> ilrd::ThreadPool::m_setOffFunc = std::make_shared<FunctionTask<>>([] {m_threadIsRunning = false;});
+const std::shared_ptr<ITPTask> ilrd::ThreadPool::m_setOffFunc =
+    std::make_shared<FunctionTask<>>([] {m_threadIsRunning = false;});
 
 enum PrivatePriority
 {
@@ -48,7 +43,8 @@ void ilrd::ThreadPool::SetNumThreads(const size_t numThreads)
     {
         for (size_t i = curr_numThreads; i < numThreads; ++i)
         {
-            auto ptr = std::make_unique<std::jthread>([this] {RunThread();});
+            auto ptr = std::make_unique<std::jthread>(
+                [this] {RunThread();});
             m_threads[ptr->get_id()].swap(ptr);
             if (!m_isRunning)
             {

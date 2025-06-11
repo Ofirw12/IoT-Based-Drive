@@ -1,12 +1,3 @@
-/*******************************************************************************
-* FileName: MinionProxy                                                          *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: TBD                                                     *
- * Review Status: pre-APPROVED (06/04/2025)                                           *
- ******************************************************************************/
-//
-// Created by ofir on 4/6/25.
-//
 
 #ifndef ILRD_RD1645_MINIONPROXY_HPP
 #define ILRD_RD1645_MINIONPROXY_HPP

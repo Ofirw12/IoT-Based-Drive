@@ -2,7 +2,6 @@
 #include <iostream>
 
 #include "ThreadPool.hpp"
-#include "test_macros.h"
 
 using namespace ilrd::threadpool;
 
@@ -30,7 +29,6 @@ void TestThreadPool()
     std::function func1([] { Task1(1); });
 
     std::shared_ptr<ITPTask> ifunc1(new FunctionTask(func1));
-    // tp.AddTask(ifunc1, ilrd::HIGH);
 
     std::function<void()> func2 = std::bind(Task1, 9);
     std::shared_ptr<ITPTask> ifunc2(new FunctionTask(func2));
@@ -48,7 +46,7 @@ void TestThreadPool()
         tp.AddTask(ifunc3, ilrd::ThreadPool::HIGH);
         tp.AddTask(ifunc2, ilrd::ThreadPool::LOW); // prints 9
         tp.AddTask(ifunc1, ilrd::ThreadPool::MEDIUM); //prints 1
-        std::cout << static_cast<FutureTask<int>*>(ifunc3.get())->Get() << std::endl; //prints 8
+        std::cout << std::static_pointer_cast<FutureTask<int>*>(ifunc3.get())->Get() << std::endl; //prints 8
     }
     tp.SetNumThreads(8);
 
@@ -78,6 +76,5 @@ void TestThreadPool()
 int main()
 {
     TestThreadPool();
-    PASS;
     return 0;
 }

@@ -4,6 +4,7 @@
 
 #include <map> // std::map
 #include <thread> // std::jthread
+
 #include "ITPTask.hpp"
 #include "WaitableQueue.hpp"
 
@@ -28,11 +29,12 @@ public:
     void Resume();
 
 private:
-    friend class Handleton;
     explicit ThreadPool(size_t numThreads =
                 std::thread::hardware_concurrency() != 1 ?
                     std::thread::hardware_concurrency() - 1 : 1);
     void RunThread();
+
+    friend class Handleton;
     class PauseTask;
     class TPTask;
 
@@ -47,7 +49,7 @@ private:
     class TPTask
     {
     public:
-        TPTask(const std::shared_ptr<threadpool::ITPTask>& task = nullptr,
+        explicit TPTask(const std::shared_ptr<threadpool::ITPTask>& task = nullptr,
                                                 unsigned int priority = 1);
         bool operator<(const TPTask& other) const;
         void Run() const;
@@ -57,11 +59,11 @@ private:
         std::chrono::time_point<std::chrono::steady_clock> m_start;
     }; // class TPTask
 
-    class PauseTask : public threadpool::ITPTask
+    class PauseTask final : public threadpool::ITPTask
     {
     public:
         PauseTask();
-        void Run();
+        void Run() override;
         void Notify();
         void NotifyOne();
         void Acquire();

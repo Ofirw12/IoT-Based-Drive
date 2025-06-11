@@ -2,11 +2,9 @@
 #define ILRD_R1645_LOGGER_HPP
 
 #include <string>
-#include <fstream>
 #include <thread>
 
 #include "WaitableQueue.hpp"
-#include "Handleton.hpp"
 
 namespace ilrd
 {

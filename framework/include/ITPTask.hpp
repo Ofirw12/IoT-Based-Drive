@@ -1,9 +1,4 @@
-/*******************************************************************************
-* FileName: ITPTask                                                            *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: Amit Yehezkel                                                     *
- * Review Status: APPROVED (12.3.25)                                           *
- ******************************************************************************/
+
 #ifndef ILRD_R1645_ITPTASK_HPP
 #define ILRD_R1645_ITPTASK_HPP
 

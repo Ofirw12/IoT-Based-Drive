@@ -1,9 +1,3 @@
-/*******************************************************************************
-* FileName: Ticket                                                          *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: TBD                                                     *
- * Review Status: pre-APPROVED (06/04/2025)                                           *
- ******************************************************************************/
 
 #ifndef ILRD_RD1645_TICKET_HPP
 #define ILRD_RD1645_TICKET_HPP

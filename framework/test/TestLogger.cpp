@@ -1,5 +1,6 @@
-#include "Logger.hpp"
+
 #include "Handleton.hpp"
+#include "Logger.hpp"
 
 void TestLogger()
 {

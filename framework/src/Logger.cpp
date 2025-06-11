@@ -4,8 +4,10 @@
  * Reviewer: Mor Weisberg                                                      *
  * Review Status: APPROVED (19/3/25)                                           *
  ******************************************************************************/
-#include <iosfwd>
+#include <fstream>
 #include <iomanip>
+#include <iosfwd>
+
 #include "Logger.hpp"
 
 ilrd::Logger::Logger() :m_severities("Debug", "Warning", "Error"),

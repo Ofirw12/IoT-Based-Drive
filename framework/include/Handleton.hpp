@@ -13,12 +13,12 @@ class Handleton
 public:
     template <typename T>
     static T* GetInstance();
-private:
     Handleton() = delete;
     ~Handleton() = delete;
     Handleton(const Handleton&) = delete;
     Handleton& operator=(const Handleton&) = delete;
 
+private:
     class HashFunction
     {
     public:
@@ -43,30 +43,9 @@ private:
 
 };
 
-// template <typename T>
-// std::mutex Handleton::m_mutex;
-
 template <typename T>
 T* Handleton::GetInstance()
 {
-    /*
-    DCLP Method (not perfect: race condition of m_instances):
-    std::atomic_thread_fence(std::memory_order_acquire);
-    if (!m_instances.contains(&typeid(T)))
-    {
-        std::unique_lock lock(m_mutex<T>);
-        std::atomic_thread_fence(std::memory_order_acquire);
-        if (!m_instances.contains(&typeid(T)))
-        {
-            std::shared_ptr<T> temp = std::make_shared<T>();
-            std::atomic_thread_fence(std::memory_order_release);
-            m_instances[&typeid(T)] = temp;
-        }
-    }
-     */
-
-    /* Option 2 std DCLP method */
-
     static std::once_flag flag;
     std::call_once(flag, []
     {
@@ -76,13 +55,6 @@ T* Handleton::GetInstance()
             m_instances[&typeid(T)].reset(new T);
         }
     });
-
-    // option 3: mutex but its overkill
-    // std::unique_lock<std::mutex> lock(m_mutex<T>);
-    // if (!m_instances.contains(&typeid(T)))
-    // {
-    //     m_instances[&typeid(T)].reset(new T);
-    // }
 
     return static_cast<T*>(m_instances.at(&typeid(T)).get());
 }

@@ -1,5 +1,7 @@
+
 #include <cstring>
 #include <sys/inotify.h>
+
 #include "DirMonitor.hpp"
 
 static int GetInFd()
@@ -68,14 +70,14 @@ void ilrd::DirMonitor::ThreadFunc()
     m_isRunning = true;
     while(m_isRunning)
     {
-        const int bufsize =  (sizeof(inotify_event) + 16) * 1024;
+        constexpr int bufsize =  (sizeof(inotify_event) + 16) * 1024;
         char buffer[bufsize] = {};
 
-        int bytes = read(m_infd, &buffer, bufsize);
+        const int bytes = read(m_infd, &buffer, bufsize);
         int i = 0;
         while (i < bytes)
         {
-            inotify_event* ie = reinterpret_cast<inotify_event*>(&buffer[i]);
+            const auto* ie = reinterpret_cast<inotify_event*>(&buffer[i]);
 
             std::string full_path = m_pathName + "/" + ie->name;
             if (ie->mask & IN_CLOSE_WRITE)

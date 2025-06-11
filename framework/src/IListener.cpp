@@ -11,17 +11,17 @@ std::vector<std::pair<int, ilrd::FDMODE>> ilrd::LinuxListener::Listen(std::vecto
     FD_ZERO(&writeset);
     int maxfd = 0;
 
-    for(auto item : vector)
+    for(auto [fst, snd] : vector)
     {
-        if (item.second == ilrd::WRITE)
+        if (snd == ilrd::WRITE)
         {
-            FD_SET(item.first, &writeset);
+            FD_SET(fst, &writeset);
         }
         else
         {
-            FD_SET(item.first, &readset);
+            FD_SET(fst, &readset);
         }
-        maxfd = std::max(maxfd, item.first);
+        maxfd = std::max(maxfd, fst);
     }
 
     select(maxfd + 1, &readset, &writeset, nullptr, nullptr);

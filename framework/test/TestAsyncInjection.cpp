@@ -3,10 +3,10 @@
 
 #include "AsyncInjection.hpp"
 
-bool GetRekt()
+bool BoolFunc()
 {
 	srand(time(nullptr));
-	if (rand() % 2)
+	if (random() % 2)
 	{
 		std::cout << "!GetRekt" << std::endl;
 		return false;
@@ -17,7 +17,7 @@ bool GetRekt()
 
 void TestAsyncInjection()
 {
-	new ilrd::AsyncInjection(GetRekt, std::chrono::milliseconds(1000));
+	new ilrd::AsyncInjection(BoolFunc, std::chrono::milliseconds(1000));
 }
 
 int main()

@@ -1,6 +1,4 @@
-//
-// Created by ofir on 4/25/25.
-//
+
 #include <fstream>
 
 int main()

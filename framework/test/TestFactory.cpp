@@ -1,10 +1,9 @@
 
 #include <iostream>
 #include <bits/shared_ptr.h>
-#include <sys/stat.h>
 
 #include "Factory.hpp"
-#include "test_macros.h"
+#include "Handleton.hpp"
 
 class Base
 {
@@ -43,31 +42,31 @@ Base* NullCreate(size_t i, int j)
 
 void TestFactory()
 {
-    ilrd::Factory<int, Base, size_t, int> baseFactory;
-    baseFactory.Register(5, Base::Create);
-    baseFactory.Register(10, Base::Create);
-    baseFactory.Register(0, NullCreate);
+    auto baseFactory = ilrd::Handleton::GetInstance<ilrd::Factory<int, Base, size_t, int>>();
+    baseFactory->Register(5, Base::Create);
+    baseFactory->Register(10, Base::Create);
+    baseFactory->Register(0, NullCreate);
 
     std::shared_ptr<Base> arr[10];
     for (int i = 0; i < 10; i++)
     {
         if (i%3 == 0)
         {
-            arr[i] = baseFactory.Create(5, 0, 4);
+            arr[i] = baseFactory->Create(5, 0, 4);
         }
         else if (i%3 ==1)
         {
-            arr[i] = baseFactory.Create(10, 1, 3);
+            arr[i] = baseFactory->Create(10, 1, 3);
         }
         else
         {
-            arr[i] = baseFactory.Create(0, 1, 2);
+            arr[i] = baseFactory->Create(0, 1, 2);
         }
     }
 
     try
     {
-        auto ptr = baseFactory.Create(2, 0, 4);
+        auto ptr = baseFactory->Create(2, 0, 4);
     }
     catch ([[maybe_unused]] const std::exception& e) {}
 
@@ -84,6 +83,5 @@ void TestFactory()
 int main()
 {
     TestFactory();
-    PASS;
     return 0;
 }

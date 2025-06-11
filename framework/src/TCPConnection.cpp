@@ -1,19 +1,11 @@
-/*******************************************************************************
-* FileName: TCPConnection                                                      *
- * Owner: Ofir Wijsboom                                                        *
- * Reviewer: Amir Fragman                                                      *
- * Review Status: APPROVED (26.2.25)                                           *
- ******************************************************************************/
-#include "TCPConnection.hpp"
 
-#include <unistd.h>
-#include <cstring>
+
 #include <iostream>
 #include <sys/socket.h>
 
-ilrd::TCPConnection::TCPConnection(int sockfd): TCPSocket(sockfd) {}
+#include "TCPConnection.hpp"
 
-ilrd::TCPConnection::~TCPConnection() {}
+ilrd::TCPConnection::TCPConnection(int sockfd): TCPSocket(sockfd) {}
 
 int ilrd::TCPConnection::Send(const std::vector<char>& str)
 {
