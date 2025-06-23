@@ -1,91 +1,148 @@
 # IoT Based Drive
 
-A drive available to the user from the linux directory gui, data can be written and read from it while the data isn't actually stored on the local pc itself but is seperated on many IoT devices (minions)
+A Linux-based user-space program that provides a virtual drive, accessible via the native directory GUI. Although data appears to be stored locally, it is actually distributed across multiple IoT devices (referred to as *minions*) on the same local network.
 
-## Motivation
-This program is made to utilize unused storage space in household IoT devices, such as a smart airconditioner controller, smart wall plug, raspberry pie device etc.
-Data will be saved using following RAID01 rules, therefore secured, safe and backed-up.
-Also, the data won't be accessible outside the Local Area Network.
+---
 
-## Intro
+## 🚀 Motivation
 
-The IoT Based Drive is a User Space program running on Linux OS,
-The drive is being mounted by the user using ``mount`` shell command
+This project is designed to leverage unused storage space on common household IoT devices — such as smart air conditioner controllers, smart plugs, Raspberry Pi devices, and more.
 
+- Data Accessible only within the Local Area Network (LAN)
+- Implement RAID 01, therefore the system ensures thata data is:
+  - **Secure**
+  - **Backed up**
+  - 
+---
 
-Data is being sent over TCP from the kernel space to the user space using a NBD module
+## 📚 Introduction
 
+IoT-Based Drive is a user-space application for Linux systems. It allows users to mount a virtual drive using the standard `mount` shell command.
 
-This project is the final project I've built during the Infinity Labs R&D Software Development program.
+Data is transmitted via TCP from the kernel space to the user space using the Linux **Network Block Device (NBD)** module.
 
+> 🛠 This project was developed as the final assignment in the Infinity Labs R&D Software Development Program.
 
-## Prerequisites
-In order to use the IoT Drive you must have cmake installed on your machine.
+---
 
-## Instructions
+## ✅ Prerequisites
 
-### minion side
-to run the minion, the user must specify the wanted port as program args
-### master side
-before running the master, minions must be up and running,
-also code inside TestMaster.cpp has to be updated according to the corresponding minions ip and port
+- Linux OS
+- `cmake` installed
+- Root access (for loading kernel modules and mounting NBD)
 
-TODO compilation steps with cmake!!!!!!!!!!!!!!!!!!!!!
+---
 
-in order to start the program open up a terminal and write down these lines
+## ⚙️ Setup & Usage
+
+### 🛠 Compilation with CMake
+
+To build the project:
+
+```bash
+git clone https://github.com/Ofirw12/IoT-Based-Drive.git
+cd IoT-Based-Drive
+mkdir build
+cd build
+cmake ..
+make
+```
+
+> Compiled executables will be in the `build/` directory.
+
+---
+
+### 🔧 Minion Side
+
+Each *minion* device must run its corresponding executable. To launch a minion, pass the desired port as a command-line argument:
+
+```bash
+./filezeroer # first usage only, will format the storage file.
+./minion <PORT>
+```
+
+### 👑 Master Side
+
+1. Ensure all minions are up and running.
+2. Edit `TestMaster.cpp` to include the IP and port of each minion device.
+
+---
+
+#### 🔌 Mounting the Drive
+
+1. Load the NBD kernel module:
+
 ```bash
 sudo modprobe nbd
 echo 4 | sudo tee /sys/block/nbd*/queue/max_sectors_kb
 ```
-in a second terminal run the master executable file
 
-now back in the first terminal write down these lines
+2. In a **second terminal**, run the master executable:
+
+```bash
+sudo ./master
+```
+
+3. Back in the **first terminal**, format and mount the virtual drive:
+
 ```bash
 sudo mkfs.ext2 /dev/nbd0
 sudo mount /dev/nbd0 ~/iot_drive/mount/
 ```
 
-now the system is up and listening to any changes you make in your ```~/iot_drive/mount/``` folder
+> Your drive is now mounted. Any file operations inside `~/iot_drive/mount/` will be distributed across the minions.
 
-## Main Components
+---
 
-### Framework
-Collection of generic components, which both each of them and/or the whole framework package can be reused in all sort of projects
-#### Reactor
-An Event-Driven component, which is responsible for observing a file descriptor, and start the chain of actions when it is ready to read.
-#### ThreadPool
-A component which is responsible for the Multi-Threading of the whole system, it contains a pool of threads waiting for new tasks to enter the system, when such enter, the first thread to catch the task will execute it and then go back to the queue until another task will be inserted
-#### Factory
-A generic component capable of creating new objects on-command, mainly being used in this project for creating r/w commands.
-#### Async Injection
-An asynchronous object, which is checking for a condition to be met, if met the object will destroy itself, otherwise it would run again after it's time interval ends.
-#### Logger
-A component in charge of writing to a log file regarding the functionality of the program
-#### DirMonitor
-A component responsible for watching over a directory containing Dynamically Linked Libraries,
-when such library is being added to the watched directory, it activates the DLLLoader
-#### DLLLoader
-A component in charge of running the newly added dll into the program in runtime using the ``dlopen()`` system call.
-#### Handleton
-Similar to Singleton, this component role is making sure that each object used by it will exist only once per class, The main difference from Singleton is that Singleton creates the instances in the data segment while Handleton creates them directly on the heap and therefore makes the instances available to both the program's compilation unit and the runtime loaded Dlls.
+## 🧩 Main Components
 
-#### Interfaces
+### 🧱 Framework (Reusable Core Modules)
+#### 🔁 Reactor
+Monitors file descriptors and triggers events when ready to read.
 
-* IInputProxy - defines the ``GetTaskArgs()`` method
-* ITaskArgs - defines the ``GetKey()`` method
-* ICommand - defines the ``Run()`` method
+#### 🧵 ThreadPool
+Handles multithreading via a waitable task queue and worker threads.
+#### 🏭 Factory
+Dynamically generates objects on-command, mainly being used in this project for creating read/write commands.
+#### ⏳ Async Injection
+Repeatedly checks a condition and self-destructs if met.
+#### 📝 Logger
+Writes system events and errors to a log file.
 
-### Concrete
-These component are specific for the needs of this project and are in charge of the functionality of the IoT Based Drive.
-#### Minion Manager
-A component made to send r/w commands from the master downward to the minion devices, The minion manager is the only component who knows the actual amount of minions and the size and division of the storage space in each minion.
-#### Minion Proxy & Master Proxy
-Components responsible on communicating between the two programs
-#### Ticket
-An object which track the status of the command sent to the minions, when the process is done, it forward the command result to the Response Manager
-#### Response Manager
-A component which gets results of commands and activate corresponding responses
-#### NBD
-A component which utilizes the linus nbd feature, and passes requests from kernel to user space
-#### FileManager
-Minion-side component responsible on accessing the actual local storage file, passing r/w commands to it
+#### 📁 DirMonitor
+Watches a directory for new Dynamic Linked Libraries (DLLs).
+
+#### 🧬 DLLLoader
+Loads DLLs at runtime using `dlopen()`.
+
+#### 🧩 Handleton
+A Singleton-like object manager with heap allocation for runtime flexibility.
+
+##### Interfaces
+
+- `IInputProxy` — declares `GetTaskArgs()`
+- `ITaskArgs` — declares `GetKey()`
+- `ICommand` — declares `Run()`
+
+---
+
+### 🔌 Concrete Components (IoT-Drive-Specific)
+#### 📦 Minion Manager
+Distributes read/write commands to minions and manages data sharding.
+
+#### 🔁 Minion Proxy & Master Proxy
+Facilitate communication between master and minions.
+
+#### 🎫 Ticket
+Tracks execution status of commands and routes results.
+
+#### 📬 Response Manager
+Handles responses and initiates appropriate follow-up actions.
+
+#### 🔗 NBD
+Handles Linux NBD communication between kernel and user space.
+
+#### 📂 FileManager
+Handles physical read/write operations on the minion devices.
+
+---
