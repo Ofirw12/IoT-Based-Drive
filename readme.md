@@ -12,7 +12,6 @@ This project is designed to leverage unused storage space on common household Io
 - Implement RAID 01, therefore the system ensures thata data is:
   - **Secure**
   - **Backed up**
-  - 
 ---
 
 ## 📚 Introduction
